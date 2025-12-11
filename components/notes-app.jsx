@@ -150,7 +150,7 @@ export function NotesApp() {
             <RefreshCw className="h-12 w-12 animate-spin text-muted-foreground mb-4" />
             <p className="text-muted-foreground">Cargando notas...</p>
           </div>
-        ) : notes.length === 0 ? (
+        ) : notes.length === 0 && !isCreating ? (
           <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
             <div className="flex h-24 w-24 items-center justify-center rounded-full bg-muted mb-6">
               <StickyNote className="h-12 w-12 text-muted-foreground" />
@@ -163,6 +163,10 @@ export function NotesApp() {
               <Plus className="h-5 w-5" />
               Crear Primera Nota
             </Button>
+          </div>
+        ) : notes.length === 0 && isCreating ? (
+          <div className="max-w-3xl mx-auto">
+            <NoteCreator onSave={handleSaveNewNote} onClose={handleCloseEditor} />
           </div>
         ) : (
           <div className="grid gap-8 lg:grid-cols-[300px_1fr]">
