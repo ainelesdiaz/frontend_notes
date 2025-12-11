@@ -15,25 +15,27 @@ export function NoteCreator({ onSave, onClose }) {
   const { toast } = useToast()
 
   const handleSave = async () => {
-    if (titulo.trim() || contenido.trim()) {
-      setIsLoading(true)
-      try {
-        await onSave({ titulo, contenido, estado: true })
-        setTitulo("")
-        setContenido("")
-        toast({
-          title: "Nota creada",
-          description: "La nota se ha creado exitosamente",
-        })
-      } catch (error) {
-        toast({
-          title: "Error",
-          description: "No se pudo crear la nota",
-          variant: "destructive",
-        })
-      } finally {
-        setIsLoading(false)
-      }
+    setIsLoading(true)
+    try {
+      await onSave({ 
+        titulo: titulo.trim() || "Sin título", 
+        contenido: contenido.trim() || "", 
+        estado: true 
+      })
+      setTitulo("")
+      setContenido("")
+      toast({
+        title: "Nota creada",
+        description: "La nota se ha creado exitosamente",
+      })
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "No se pudo crear la nota",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -75,7 +77,7 @@ export function NoteCreator({ onSave, onClose }) {
         <Button 
           onClick={handleSave} 
           className="w-full gap-2" 
-          disabled={(!titulo.trim() && !contenido.trim()) || isLoading}
+          disabled={isLoading}
         >
           <Plus className="h-4 w-4" />
           {isLoading ? "Creando..." : "Crear Nota"}
