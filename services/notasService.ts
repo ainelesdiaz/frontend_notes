@@ -11,7 +11,7 @@ export interface Nota {
 export interface NotaCreate {
   titulo: string
   contenido: string
-  fecha?: string
+  fecha: string
   estado?: boolean
 }
 

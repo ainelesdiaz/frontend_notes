@@ -51,6 +51,7 @@ export function NotesApp() {
       const newNote = await notasService.crearNota({
         titulo: noteData.titulo,
         contenido: noteData.contenido,
+        fecha: noteData.fecha,
         estado: true,
       })
       setNotes([newNote, ...notes])

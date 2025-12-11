@@ -20,6 +20,7 @@ export function NoteCreator({ onSave, onClose }) {
       await onSave({ 
         titulo: titulo.trim() || "Sin título", 
         contenido: contenido.trim() || "", 
+        fecha: new Date().toISOString(),
         estado: true 
       })
       setTitulo("")
